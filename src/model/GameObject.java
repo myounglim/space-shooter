@@ -1,35 +1,14 @@
 package model;
 
+import utility.Dimension;
+import utility.Position;
+
 import java.io.File;
 
 /**
  * Base object for all objects in the game
  */
 public abstract class GameObject {
-    class Position {
-        int x, y;
-        public Position(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public void moveTo(Position position) {
-            this.x = position.x;
-            this.y = position.y;
-        }
-
-        public void moveLeft() { this.x--; }
-        public void moveRight() { this.x++; }
-        public void moveUp() { this.y--; }
-        public void moveDown() { this.y++; }
-    }
-    class Dimension {
-        int width, height;
-        public Dimension(int height, int width) {
-            this.width = width;
-            this.height = height;
-        }
-    }
     Position position;
     File imageFile;
     Dimension dimension;
@@ -38,4 +17,12 @@ public abstract class GameObject {
         this.position = position;
         this.imageFile = imageFile;
     }
+
+    public File getImageFile() {
+        return this.imageFile;
+    }
+
+    public Position getPosition() { return this.position; }
+
+    public Dimension getDimension() { return this.dimension; }
 }

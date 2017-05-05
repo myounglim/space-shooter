@@ -10,4 +10,4 @@ Progress for week of 4/16
     D) EnemyFollower (enemy that follows that player)
     E) EnemyShooter (enemy that shoots at the player)
     F) Obstacle (obstacles that player must avoid)
-3) Downloaded image assets for the entities in the game and displayed in sample JavaFX app.
+3) Downloaded image assets for the entities in the game and displayed in controller JavaFX app.

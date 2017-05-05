@@ -1,5 +1,8 @@
 package model;
 
+import utility.Dimension;
+import utility.Position;
+
 import java.io.File;
 
 /**
@@ -12,7 +15,7 @@ public class PlayerShip extends GameObject {
 
     public PlayerShip(Position pos, File file) {
         super(pos, file);
-        this.dimension = new Dimension(30, 30);
+        this.dimension = new Dimension(75, 75);
         this.item = Item.EMPTY;
         this.numLives = 3;
         this.currentScore = 0;
@@ -21,5 +24,20 @@ public class PlayerShip extends GameObject {
     /** TODO */
     public void move() {
 
+    }
+
+    public void moveUp() {
+        this.position.moveUp(10);
+    }
+
+    public void moveDown() {
+        this.position.moveDown(10);
+    }
+
+    public void moveRight() {
+        this.position.moveRight(10);
+    }
+    public void moveLeft() {
+        this.position.moveLeft(10);
     }
 }

@@ -1,5 +1,8 @@
 package model;
 
+import utility.Dimension;
+import utility.Position;
+
 import java.io.File;
 
 /**
@@ -10,6 +13,6 @@ public abstract class Enemy extends GameObject {
     public Enemy(Position pos, File file, float speed) {
         super(pos, file);
         this.speed = speed;
-        this.dimension = new Dimension(30, 30);
+        this.dimension = new Dimension(75, 75);
     }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.Pane?>
+<!--<Pane fx:id="world_pane" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerController">-->
+<Pane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <!--<ImageView fx:id="player_ship_image" layoutX="10" layoutY="150" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">-->
+         <!--<image>-->
+            <!--<Image fx:id="player_image" url="@../images/player2.png" />-->
+         <!--</image>-->
+      <!--</ImageView>-->
+      <!--<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
+         <!--<image>-->
+            <!--<Image url="@../images/enemy2.png" />-->
+         <!--</image>-->
+      <!--</ImageView>-->
+      <!--<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
+         <!--<image>-->
+            <!--<Image url="@../images/enemy1.png" />-->
+         <!--</image>-->
+      <!--</ImageView>-->
+      <!--<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
+         <!--<image>-->
+            <!--<Image url="@../images/asteroid.png" />-->
+         <!--</image>-->
+      <!--</ImageView>-->
+      <!--<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
+         <!--<image>-->
+            <!--<Image url="@../images/asteroid2.png" />-->
+         <!--</image>-->
+      <!--</ImageView>-->
+   </children>
+</Pane>

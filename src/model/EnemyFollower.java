@@ -1,5 +1,7 @@
 package model;
 
+import utility.Position;
+
 import java.io.File;
 
 /**
@@ -13,5 +15,9 @@ public class EnemyFollower extends Enemy {
     /** TODO */
     public void followPlayer() {
 
+    }
+
+    public void moveForward() {
+        this.position.moveLeft(2);
     }
 }

@@ -10,8 +10,8 @@ import java.io.File;
 public class Obstacle extends GameObject {
     boolean destructible;
     float angle;
-    public Obstacle(Position pos, File file, boolean destructible, float angle) {
-        super(pos, file);
+    public Obstacle(Position pos, File file, int index, boolean destructible, float angle) {
+        super(pos, file, index);
         this.destructible = destructible;
         this.angle = angle;
     }

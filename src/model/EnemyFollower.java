@@ -8,8 +8,8 @@ import java.io.File;
  * Enemy that follows that player
  */
 public class EnemyFollower extends Enemy {
-    public EnemyFollower(Position pos, File file, float speed) {
-        super(pos, file, speed);
+    public EnemyFollower(Position pos, File file, int index, float speed) {
+        super(pos, file, index, speed);
     }
 
     /** TODO */
@@ -18,6 +18,6 @@ public class EnemyFollower extends Enemy {
     }
 
     public void moveForward() {
-        this.position.moveLeft(2);
+        this.position.moveLeft(speed);
     }
 }

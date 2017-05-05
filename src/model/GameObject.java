@@ -1,5 +1,6 @@
 package model;
 
+import javafx.geometry.Bounds;
 import utility.Dimension;
 import utility.Position;
 
@@ -12,10 +13,12 @@ public abstract class GameObject {
     Position position;
     File imageFile;
     Dimension dimension;
+    int index;
 
-    public GameObject(Position position, File imageFile) {
+    public GameObject(Position position, File imageFile, int index) {
         this.position = position;
         this.imageFile = imageFile;
+        this.index = index;
     }
 
     public File getImageFile() {
@@ -25,4 +28,7 @@ public abstract class GameObject {
     public Position getPosition() { return this.position; }
 
     public Dimension getDimension() { return this.dimension; }
+
+    public int getIndex() { return this.index; }
+
 }

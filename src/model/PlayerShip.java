@@ -13,8 +13,8 @@ public class PlayerShip extends GameObject {
     private Item item;
     private int numLives, currentScore;
 
-    public PlayerShip(Position pos, File file) {
-        super(pos, file);
+    public PlayerShip(Position pos, File file, int index) {
+        super(pos, file, index);
         this.dimension = new Dimension(75, 75);
         this.item = Item.EMPTY;
         this.numLives = 3;

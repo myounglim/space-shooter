@@ -10,8 +10,8 @@ import java.io.File;
  */
 public abstract class Enemy extends GameObject {
     float speed;
-    public Enemy(Position pos, File file, float speed) {
-        super(pos, file);
+    public Enemy(Position pos, File file, int index, float speed) {
+        super(pos, file, index);
         this.speed = speed;
         this.dimension = new Dimension(75, 75);
     }

@@ -25,30 +25,19 @@ public class PlayerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mPlayerShip = new PlayerShip(new Position(10, 200), new File("src/images/player2.png"));
-        setImage();
-        setPosition();
+        mPlayerShip = new PlayerShip(
+                new Position(10, Main.WINDOW_HEIGHT / 2),
+                new File("src/images/player2.png"),
+                0);
+        //setImage();
+        player_ship_image = setImage(mPlayerShip);
+        setPosition(mPlayerShip, player_ship_image);
         addKeyListener();
         player_ship_image.setFocusTraversable(true);
         System.out.println("Bounds of my ship: " + player_ship_image.getBoundsInParent());
     }
 
-    public Bounds getPlayerBounds() {
-        return player_ship_image.getBoundsInParent();
-    }
-
-    private void setPosition() {
-        player_ship_image.setY(mPlayerShip.getPosition().getYPosition());
-        player_ship_image.setX(mPlayerShip.getPosition().getXPosition());
-    }
-
-    private void setImage() {
-        Image image = new Image(mPlayerShip.getImageFile().toURI().toString());
-        player_ship_image = new ImageView(image);
-        player_ship_image.setFitWidth(mPlayerShip.getDimension().getWidth());
-        player_ship_image.setFitHeight(mPlayerShip.getDimension().getHeight());
-        root.getChildren().add(player_ship_image);
-    }
+    public ImageView getPlayerView() { return player_ship_image; }
 
     private void addKeyListener() {
         player_ship_image.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -67,7 +56,7 @@ public class PlayerController extends Controller implements Initializable {
                     mPlayerShip.moveLeft();
                     System.out.println("X pos: " + mPlayerShip.getPosition().getXPosition());
                 }
-                setPosition();
+                setPosition(mPlayerShip, player_ship_image);
             }
         });
     }

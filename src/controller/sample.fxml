@@ -6,8 +6,12 @@
 
 <?import javafx.scene.layout.Pane?>
 <!--<Pane fx:id="world_pane" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerController">-->
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <Pane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+       <Label fx:id="lives_text" layoutX="15" layoutY="25" text="3 Lives" />
+       <Label fx:id="scores_text" layoutX="115" layoutY="25" text="Total Score" />
       <!--<ImageView fx:id="player_ship_image" layoutX="10" layoutY="150" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">-->
          <!--<image>-->
             <!--<Image fx:id="player_image" url="@../images/player2.png" />-->

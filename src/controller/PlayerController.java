@@ -86,10 +86,10 @@ public class PlayerController extends Controller implements Initializable {
         lifeLabel = new Label("Lives:");
         scoreText = new Label();
         lifeText = new Label();
-        setUpLabelDisplay(lifeLabel, new Position(15, 15));
-        setUpLabelDisplay(lifeText, new Position(60, 15));
-        setUpLabelDisplay(scoreLabel, new Position(120, 15));
-        setUpLabelDisplay(scoreText, new Position(160, 15));
+        setUpLabelDisplay(lifeLabel, new Position(15, 10));
+        setUpLabelDisplay(lifeText, new Position(60, 10));
+        setUpLabelDisplay(scoreLabel, new Position(120, 10));
+        setUpLabelDisplay(scoreText, new Position(160, 10));
     }
 
     private void addKeyListener() {

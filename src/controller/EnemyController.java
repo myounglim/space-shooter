@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.EnemyFollower;
+import model.EnemyShooter;
 import model.GameObject;
 import utility.Position;
 import model.Enemy;
@@ -20,33 +21,50 @@ import java.util.ResourceBundle;
  * Created by student on 5/5/17.
  */
 public class EnemyController extends Controller implements Initializable {
-    EnemyFollower mEnemyFollower;
-    ImageView followerView;
-    private ArrayList<Enemy> mFollowers;
-    private ArrayList<ImageView> mFollowersView;
-    public static final int NUM_FOLLOWERS = 3;
+    private ArrayList<Enemy> mEnemies;
+    private ArrayList<ImageView> mEnemiesView;
+    public static final int NUM_FOLLOWERS = 2;
+    public static final int NUM_SHOOTERS = 3;
     //Pane root;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //mEnemyFollower = new EnemyFollower(new Position(750, 200), new File("src/images/enemy1.png"), 1.5f);
-        mFollowers = new ArrayList<>();
-        mFollowersView = new ArrayList<>();
+        mEnemies = new ArrayList<>();
+        mEnemiesView = new ArrayList<>();
         initializeEnemies();
+//        mEnemyFollower = new EnemyFollower(new Position(750, 200), new File("src/images/enemy1.png"), 1.5f);
 //        followerView = setImage(mEnemyFollower);
 //        setPosition(mEnemyFollower, followerView);
     }
 
     private void initializeEnemies() {
+        initializeFollowers();
+        initializeShooters();
+    }
+
+    private void initializeFollowers() {
         float speed = 1.0f;
         for (int i = 0; i < NUM_FOLLOWERS; i++) {
-            mFollowers.add(new EnemyFollower(
-                    new Position(Main.WINDOW_WIDTH + i * 50, Main.WINDOW_HEIGHT / 2 + 100 * i),
+            mEnemies.add(new EnemyFollower(
+                    new Position(Main.WINDOW_WIDTH + i * 50, Main.WINDOW_DIVISION * i + Main.WINDOW_DIVISION/3),
                     new File("src/images/enemy1.png"),
                     i,
                     speed));
-            mFollowersView.add(setImage(mFollowers.get(i)));
-            setViewPosition(mFollowers.get(i), mFollowersView.get(i));
+            mEnemiesView.add(setImage(mEnemies.get(i)));
+            setViewPosition(mEnemies.get(i), mEnemiesView.get(i));
+            speed += 1.0;
+        }
+    }
+
+    private void initializeShooters() {
+        float speed = 1.0f;
+        for (int i = NUM_FOLLOWERS; i < NUM_FOLLOWERS + NUM_SHOOTERS; i++) {
+            mEnemies.add(new EnemyShooter(
+                    new Position(Main.WINDOW_WIDTH + i * 50, Main.WINDOW_DIVISION * i + Main.WINDOW_DIVISION/3),
+                    new File("src/images/enemy2.png"),
+                    i, speed));
+            mEnemiesView.add(setImage(mEnemies.get(i)));
+            setViewPosition(mEnemies.get(i), mEnemiesView.get(i));
             speed += 1.0;
         }
     }
@@ -58,10 +76,10 @@ public class EnemyController extends Controller implements Initializable {
     }
 
     public Enemy getEnemy(int index) {
-        return this.mFollowers.get(index);
+        return this.mEnemies.get(index);
     }
 
     public ImageView getEnemyView(int index) {
-        return this.mFollowersView.get(index);
+        return this.mEnemiesView.get(index);
     }
 }

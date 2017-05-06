@@ -16,20 +16,17 @@ import model.GameObject;
 public class Main extends Application {
     public static final int WINDOW_WIDTH = 1250;
     public static final int WINDOW_HEIGHT = 650;
+    public static final int WINDOW_DIVISION = 650 / 5;
     AnimationTimer gameTimer;
     Pane root;
     PlayerController playerController;
     EnemyController enemyController;
+    ObstacleController obstacleController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        playerController = new PlayerController();
-        playerController.setRoot(root);
-        playerController.initialize(null, null);
-        enemyController = new EnemyController();
-        enemyController.setRoot(root);
-        enemyController.initialize(null, null);
+        initializeControllers();
         primaryStage.setTitle("Space Shooter");
         primaryStage.setScene(new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.show();
@@ -40,7 +37,7 @@ public class Main extends Application {
         gameTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                for (int i = 0; i < EnemyController.NUM_FOLLOWERS; i++) {
+                for (int i = 0; i < EnemyController.NUM_FOLLOWERS + EnemyController.NUM_SHOOTERS; i++) {
                     enemyController.getEnemy(i).moveForward();
                     enemyController.setViewPosition(enemyController.getEnemy(i), enemyController.getEnemyView(i));
                     if (collisionDetected(playerController.getPlayerView(), enemyController.getEnemyView(i))) {
@@ -49,7 +46,7 @@ public class Main extends Application {
                     checkOutOfBounds(i);
                 }
                 if (playerController.getLaser().isShooting()) {
-                    for (int i = 0; i < EnemyController.NUM_FOLLOWERS; i++) {
+                    for (int i = 0; i < EnemyController.NUM_FOLLOWERS + EnemyController.NUM_SHOOTERS; i++) {
                         if (targetHit(enemyController.getEnemyView(i), playerController.getLaserView())) {
                             resetAnEnemy(i);
                             playerController.getLaser().setToShootingMode(false);
@@ -86,8 +83,9 @@ public class Main extends Application {
         Bounds bound1 = enemy.getBoundsInParent();
         Bounds bound2 = laser.getBoundsInParent();
         double dx = Math.abs(bound1.getMinX() - bound2.getMaxX());
-        double dy = Math.abs(bound1.getMaxY() - bound2.getMaxY());
-        return dy < 70 && dx < 5;
+        double dy = Math.abs(bound1.getMaxY() - bound2.getMinY());
+        //return bound2.getMaxY() < bound1.getMaxY() && bound2.getMaxY() > bound1.getMinY() && dx < 2.0;
+        return dy < 75 && dx < 2.5;
     }
 
     private void checkOutOfBounds(int index) {
@@ -106,6 +104,18 @@ public class Main extends Application {
         resetAnEnemy(index);
         playerController.decreaseLife();
         playerController.displayLives();
+    }
+
+    private void initializeControllers() {
+        playerController = new PlayerController();
+        playerController.setRoot(root);
+        playerController.initialize(null, null);
+        enemyController = new EnemyController();
+        enemyController.setRoot(root);
+        enemyController.initialize(null, null);
+        obstacleController = new ObstacleController();
+        obstacleController.setRoot(root);
+        obstacleController.initialize(null, null);
     }
 
     public static void main(String[] args) {

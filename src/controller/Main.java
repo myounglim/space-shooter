@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Enemy;
+import model.EnemyFollower;
 import model.GameObject;
 
 public class Main extends Application {
@@ -39,12 +41,12 @@ public class Main extends Application {
             @Override
             public void handle(long now) {
                 for (int i = 0; i < EnemyController.NUM_FOLLOWERS; i++) {
-                    enemyController.getEnemyFollower(i).moveForward();
-                    enemyController.setPosition(enemyController.getEnemyFollower(i), enemyController.getEnemyView(i));
+                    enemyController.getEnemy(i).moveForward();
+                    enemyController.setViewPosition(enemyController.getEnemy(i), enemyController.getEnemyView(i));
                     if (collisionDetected(playerController.getPlayerView(), enemyController.getEnemyView(i))) {
-                        gameTimer.stop();
-                        System.out.println("Collision!");
+                        resetAfterCollision(i);
                     }
+                    checkOutOfBounds(i);
                 }
             }
         };
@@ -65,6 +67,24 @@ public class Main extends Application {
         double dySquared = Math.pow(dy, 2);
         double result = Math.sqrt(dxSquared + dySquared);
         return result < 60;
+    }
+
+    private void checkOutOfBounds(int index) {
+        Enemy enemy = enemyController.getEnemy(index);
+        if (enemy.outOfBounds())
+            resetAnEnemy(index);
+    }
+
+    private void resetAnEnemy(int index) {
+        enemyController.resetEnemyPosition(enemyController.getEnemy(index), enemyController.getEnemyView(index));
+    }
+
+    private void resetAfterCollision(int index) {
+        System.out.println("Collision!");
+        playerController.resetPlayerPosition();
+        resetAnEnemy(index);
+        playerController.decreaseLife();
+        playerController.displayLives();
     }
 
     public static void main(String[] args) {

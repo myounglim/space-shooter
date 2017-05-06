@@ -17,7 +17,4 @@ public class EnemyFollower extends Enemy {
 
     }
 
-    public void moveForward() {
-        this.position.moveLeft(speed);
-    }
 }

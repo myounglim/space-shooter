@@ -26,14 +26,17 @@ public class PlayerShip extends GameObject {
 
     }
 
+    public int getLives() { return numLives; }
+    public int getCurrentScore() { return this.currentScore; }
+    public void decreaseLife() { this.numLives--; }
+    public void increaseScore() { this.currentScore++; }
+
     public void moveUp() {
         this.position.moveUp(10);
     }
-
     public void moveDown() {
         this.position.moveDown(10);
     }
-
     public void moveRight() {
         this.position.moveRight(10);
     }

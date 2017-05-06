@@ -1,5 +1,6 @@
 package model;
 
+import controller.Main;
 import javafx.geometry.Bounds;
 import utility.Dimension;
 import utility.Position;
@@ -14,11 +15,13 @@ public abstract class GameObject {
     File imageFile;
     Dimension dimension;
     int index;
+    Position initialPosition;
 
     public GameObject(Position position, File imageFile, int index) {
         this.position = position;
         this.imageFile = imageFile;
         this.index = index;
+        this.initialPosition = new Position(position.getXPosition(), position.getYPosition());
     }
 
     public File getImageFile() {
@@ -27,8 +30,19 @@ public abstract class GameObject {
 
     public Position getPosition() { return this.position; }
 
+    public Position getInitialPosition() { return this.initialPosition; }
+
     public Dimension getDimension() { return this.dimension; }
 
     public int getIndex() { return this.index; }
 
+    public void resetPosition() {
+        position = new Position(initialPosition.getXPosition(), initialPosition.getYPosition());
+    }
+
+    public boolean outOfBounds() {
+        float x = this.getPosition().getXPosition();
+        float y = this.getPosition().getYPosition();
+        return (x < -50 || y < -50);
+    }
 }

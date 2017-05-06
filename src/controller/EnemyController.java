@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import model.EnemyFollower;
 import model.GameObject;
 import utility.Position;
+import model.Enemy;
 
 import java.io.File;
 import java.net.URL;
@@ -21,8 +22,8 @@ import java.util.ResourceBundle;
 public class EnemyController extends Controller implements Initializable {
     EnemyFollower mEnemyFollower;
     ImageView followerView;
-    ArrayList<EnemyFollower> mFollowers;
-    ArrayList<ImageView> mFollowersView;
+    private ArrayList<Enemy> mFollowers;
+    private ArrayList<ImageView> mFollowersView;
     public static final int NUM_FOLLOWERS = 3;
     //Pane root;
 
@@ -45,18 +46,18 @@ public class EnemyController extends Controller implements Initializable {
                     i,
                     speed));
             mFollowersView.add(setImage(mFollowers.get(i)));
-            setPosition(mFollowers.get(i), mFollowersView.get(i));
+            setViewPosition(mFollowers.get(i), mFollowersView.get(i));
             speed += 1.0;
         }
     }
 
-//    @Override
-//    public Bounds getBounds(GameObject obj) {
-//        int index = obj.getIndex();
-//        return mFollowersView.get(index).getBoundsInParent();
-//    }
 
-    public EnemyFollower getEnemyFollower(int index) {
+    public void resetEnemyPosition(Enemy enemy, ImageView enemyView) {
+        resetPosition(enemy);
+        setViewPosition(enemy, enemyView);
+    }
+
+    public Enemy getEnemy(int index) {
         return this.mFollowers.get(index);
     }
 

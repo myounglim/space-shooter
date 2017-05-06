@@ -1,10 +1,12 @@
 package controller;
 
 import javafx.geometry.Bounds;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.GameObject;
+import utility.Position;
 
 /**
  * Created by student on 5/5/17.
@@ -24,9 +26,19 @@ public abstract class Controller {
         return view;
     }
 
-    public void setPosition(GameObject object, ImageView view) {
+    public void setViewPosition(GameObject object, ImageView view) {
         view.setY(object.getPosition().getYPosition());
         view.setX(object.getPosition().getXPosition());
+    }
+
+    public void resetPosition(GameObject obj) {
+        obj.resetPosition();
+    }
+
+    public void setUpLabelDisplay(Label label, Position pos) {
+        label.setLayoutX(pos.getXPosition());
+        label.setLayoutY(pos.getYPosition());
+        root.getChildren().add(label);
     }
 
 //    public Bounds getBounds(ImageView obj) {

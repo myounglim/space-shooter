@@ -10,9 +10,9 @@ public class Position {
         this.y = y;
     }
 
-    public void moveTo(Position position) {
-        this.x = position.x;
-        this.y = position.y;
+    public void moveTo(Position newPosition) {
+        this.x = newPosition.x;
+        this.y = newPosition.y;
     }
 
     public void moveLeft(float off) { this.x -= off; }

@@ -15,4 +15,8 @@ public abstract class Enemy extends GameObject {
         this.speed = speed;
         this.dimension = new Dimension(75, 75);
     }
+
+    public void moveForward() {
+        this.position.moveLeft(speed);
+    }
 }

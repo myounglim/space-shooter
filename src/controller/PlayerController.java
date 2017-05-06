@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.GameObject;
 import model.PlayerShip;
+import model.ShootingObject;
 import utility.Position;
 
 import java.io.File;
@@ -21,7 +22,9 @@ import java.util.ResourceBundle;
 
 public class PlayerController extends Controller implements Initializable {
     ImageView player_ship_image;
+    ImageView laserView;
     PlayerShip mPlayerShip;
+    ShootingObject laser;
     public static final float INITIAL_X_POS = 10;
     public static final float INITIAL_Y_POS = Main.WINDOW_HEIGHT / 2;
     private Label scoreLabel, lifeLabel, scoreText, lifeText;
@@ -42,14 +45,32 @@ public class PlayerController extends Controller implements Initializable {
         setUpHeader();
         displayLives();
         displayScore();
+        laser = mPlayerShip.getShooting();
+        laserView = setImage(laser);
+        setViewPosition(mPlayerShip.getShooting(), laserView);
     }
 
     public ImageView getPlayerView() { return player_ship_image; }
     public PlayerShip getPlayerShip() { return this.mPlayerShip; }
+    public ShootingObject getLaser() { return this.laser; }
+    public ImageView getLaserView() { return this.laserView; }
 
     public void resetPlayerPosition() {
         resetPosition(mPlayerShip);
         setViewPosition(mPlayerShip, player_ship_image);
+    }
+
+    public void positionLaser() {
+        Position playerPosition = mPlayerShip.getPosition();
+        laser.getPosition().moveTo(
+                new Position(playerPosition.getXPosition() + 75/2, playerPosition.getYPosition() + 75/2));
+        laser.setToShootingMode(true);
+        setViewPosition(laser, laserView);
+    }
+
+    public void shootLaser() {
+        laser.projectForward();
+        setViewPosition(laser, laserView);
     }
 
     public void displayLives() { lifeText.setText(Integer.toString(mPlayerShip.getLives())); }
@@ -85,6 +106,11 @@ public class PlayerController extends Controller implements Initializable {
             } else if (key.getCode().equals(KeyCode.LEFT)) {
                 mPlayerShip.moveLeft();
                 System.out.println("X pos: " + mPlayerShip.getPosition().getXPosition());
+            } else if (key.getCode().equals(KeyCode.SPACE)) {
+                if (!laser.isShooting()) {
+                    positionLaser();
+                    System.out.println("Pew Pew");
+                }
             }
             setViewPosition(mPlayerShip, player_ship_image);
         });

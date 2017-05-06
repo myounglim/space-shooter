@@ -48,6 +48,19 @@ public class Main extends Application {
                     }
                     checkOutOfBounds(i);
                 }
+                if (playerController.getLaser().isShooting()) {
+                    for (int i = 0; i < EnemyController.NUM_FOLLOWERS; i++) {
+                        if (targetHit(enemyController.getEnemyView(i), playerController.getLaserView())) {
+                            resetAnEnemy(i);
+                            playerController.getLaser().setToShootingMode(false);
+                            playerController.getLaser().setLaserOutOfBounds();
+                        }
+                    }
+                    if (playerController.getLaser().laserOutOfBounds()) {
+                        playerController.getLaser().setToShootingMode(false);
+                    }
+                    playerController.shootLaser();
+                }
             }
         };
 
@@ -67,6 +80,14 @@ public class Main extends Application {
         double dySquared = Math.pow(dy, 2);
         double result = Math.sqrt(dxSquared + dySquared);
         return result < 60;
+    }
+
+    private boolean targetHit(ImageView enemy, ImageView laser) {
+        Bounds bound1 = enemy.getBoundsInParent();
+        Bounds bound2 = laser.getBoundsInParent();
+        double dx = Math.abs(bound1.getMinX() - bound2.getMaxX());
+        double dy = Math.abs(bound1.getMaxY() - bound2.getMaxY());
+        return dy < 70 && dx < 5;
     }
 
     private void checkOutOfBounds(int index) {

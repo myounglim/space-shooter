@@ -1,5 +1,6 @@
 package model;
 
+import controller.Main;
 import utility.Dimension;
 import utility.Position;
 
@@ -12,6 +13,7 @@ public class PlayerShip extends GameObject {
     enum Item { EMPTY, BOMB, SHIELD }
     private Item item;
     private int numLives, currentScore;
+    private ShootingObject shooting;
 
     public PlayerShip(Position pos, File file, int index) {
         super(pos, file, index);
@@ -19,17 +21,17 @@ public class PlayerShip extends GameObject {
         this.item = Item.EMPTY;
         this.numLives = 3;
         this.currentScore = 0;
-    }
-
-    /** TODO */
-    public void move() {
-
+        this.shooting = new ShootingObject(
+                new Position(pos.getXPosition(), Main.WINDOW_WIDTH + 50),
+                new File("src/images/yellow-green.png"),
+                0, 2f);
     }
 
     public int getLives() { return numLives; }
     public int getCurrentScore() { return this.currentScore; }
     public void decreaseLife() { this.numLives--; }
     public void increaseScore() { this.currentScore++; }
+    public ShootingObject getShooting() { return this.shooting; }
 
     public void moveUp() {
         this.position.moveUp(10);

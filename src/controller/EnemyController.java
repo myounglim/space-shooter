@@ -23,8 +23,9 @@ import java.util.ResourceBundle;
 public class EnemyController extends Controller implements Initializable {
     private ArrayList<Enemy> mEnemies;
     private ArrayList<ImageView> mEnemiesView;
-    public static final int NUM_FOLLOWERS = 2;
-    public static final int NUM_SHOOTERS = 3;
+    public static final int NUM_FOLLOWERS = 3;
+    public static final int NUM_SHOOTERS = 2;
+    public static final int[] Y_ALIGNED = {30, 290, 550, 160, 420};
     //Pane root;
 
     @Override
@@ -46,7 +47,7 @@ public class EnemyController extends Controller implements Initializable {
         float speed = 1.0f;
         for (int i = 0; i < NUM_FOLLOWERS; i++) {
             mEnemies.add(new EnemyFollower(
-                    new Position(Main.WINDOW_WIDTH + i * 50, Main.WINDOW_DIVISION * i + Main.WINDOW_DIVISION/3),
+                    new Position(Main.WINDOW_WIDTH + i * 50, Y_ALIGNED[i]),
                     new File("src/images/enemy1.png"),
                     i,
                     speed));
@@ -60,7 +61,7 @@ public class EnemyController extends Controller implements Initializable {
         float speed = 1.0f;
         for (int i = NUM_FOLLOWERS; i < NUM_FOLLOWERS + NUM_SHOOTERS; i++) {
             mEnemies.add(new EnemyShooter(
-                    new Position(Main.WINDOW_WIDTH + i * 50, Main.WINDOW_DIVISION * i + Main.WINDOW_DIVISION/3),
+                    new Position(Main.WINDOW_WIDTH + i * 50, Y_ALIGNED[i]),
                     new File("src/images/enemy2.png"),
                     i, speed));
             mEnemiesView.add(setImage(mEnemies.get(i)));

@@ -30,7 +30,7 @@ public class PlayerShip extends GameObject {
     public int getLives() { return numLives; }
     public int getCurrentScore() { return this.currentScore; }
     public void decreaseLife() { this.numLives--; }
-    public void increaseScore() { this.currentScore += 10; }
+    public void increaseScore(int score) { this.currentScore += score; }
     public ShootingObject getShooting() { return this.shooting; }
 
     public void moveUp() {

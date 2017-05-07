@@ -47,7 +47,7 @@ public class Main extends Application {
             @Override
             public void handle(long now) {
                 if (level >= 1) {
-                    for (int i = 0; i < EnemyController.NUM_FOLLOWERS + EnemyController.NUM_SHOOTERS; i++) {
+                    for (int i = 0; i < EnemyController.NUM_FOLLOWERS; i++) {
                         enemyController.getEnemy(i).moveForward();
                         enemyController.setViewPosition(enemyController.getEnemy(i), enemyController.getEnemyView(i));
                         if (collisionDetected(playerController.getPlayerView(), enemyController.getEnemyView(i))) {
@@ -55,12 +55,31 @@ public class Main extends Application {
                         }
                         checkOutOfBounds(i);
                     }
+                    if (level >= 2) {
+                        for (int i = EnemyController.NUM_FOLLOWERS; i < EnemyController.NUM_FOLLOWERS + EnemyController.NUM_SHOOTERS; i++) {
+                            enemyController.getEnemy(i).moveForward();
+                            enemyController.setViewPosition(enemyController.getEnemy(i), enemyController.getEnemyView(i));
+                            if (collisionDetected(playerController.getPlayerView(), enemyController.getEnemyView(i))) {
+                                resetAfterCollision(i, true);
+                            }
+                            checkOutOfBounds(i);
+                        }
+                    }
                 }
-                
+
                 if (playerController.getLaser().isShooting()) {
                     for (int i = 0; i < EnemyController.NUM_FOLLOWERS + EnemyController.NUM_SHOOTERS; i++) {
                         if (targetHit(enemyController.getEnemyView(i), playerController.getLaserView())) {
                             resetAnEnemy(i);
+                            playerController.getLaser().setToShootingMode(false);
+                            playerController.getLaser().setLaserOutOfBounds();
+                            playerController.increaseScore(1);
+                            playerController.displayScore();
+                        }
+                    }
+                    for (int i = 0; i < ObstacleController.NUM_OBSTACLES; i++) {
+                        if (targetHit(obstacleController.getObstacleView(i), playerController.getLaserView())) {
+                            resetAnObstacle(i);
                             playerController.getLaser().setToShootingMode(false);
                             playerController.getLaser().setLaserOutOfBounds();
                         }
@@ -110,7 +129,7 @@ public class Main extends Application {
 
     private void goalReached() {
         playerController.resetPlayerPosition();
-        playerController.increaseScore();
+        playerController.increaseScore(10);
         playerController.displayScore();
         nextLevel();
     }

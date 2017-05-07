@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 public class ObstacleController extends Controller implements Initializable {
     private ArrayList<Obstacle> mObstacles;
     private ArrayList<ImageView> mObstacleView;
-    public static final int NUM_OBSTACLES = 3;
+    public static final int NUM_OBSTACLES = 4;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,7 +30,7 @@ public class ObstacleController extends Controller implements Initializable {
         float speed = 1.0f;
         for (int i = 0; i < NUM_OBSTACLES; i++) {
             mObstacles.add(new Obstacle(
-                    new Position(Main.WINDOW_WIDTH / 5 * 4 + i * 100, -10),
+                    new Position(Main.WINDOW_WIDTH / 5 * 3 + i * 200, -10 + -25 * i),
                     new File("src/images/asteroid3.png"),
                     i,
                     speed,

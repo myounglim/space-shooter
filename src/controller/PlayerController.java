@@ -89,7 +89,7 @@ public class PlayerController extends Controller implements Initializable {
 
     public void displayScore() { scoreText.setText(Integer.toString(mPlayerShip.getCurrentScore())); }
 
-    public void increaseScore() { mPlayerShip.increaseScore(); }
+    public void increaseScore(int score) { mPlayerShip.increaseScore(score); }
 
     private void setUpHeader() {
         scoreLabel = new Label("Score:");

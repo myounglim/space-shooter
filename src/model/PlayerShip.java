@@ -32,6 +32,10 @@ public class PlayerShip extends GameObject {
     public void decreaseLife() { this.numLives--; }
     public void increaseScore(int score) { this.currentScore += score; }
     public ShootingObject getShooting() { return this.shooting; }
+    public void resetPlayer() {
+        numLives = 3;
+        currentScore = 0;
+    }
 
     public void moveUp() {
         this.position.moveUp(10);

@@ -96,7 +96,7 @@ public class PlayerController extends Controller implements Initializable {
 
     public void increaseScore(int score) { mPlayerShip.increaseScore(score); }
 
-    public void displayLevel() { levelText.setText(Integer.toString(Main.level)); }
+    public void displayLevel() { levelText.setText(Integer.toString(Main.level + 1)); }
 
     private void setUpHeader() {
         scoreLabel = new Label("Score:");
@@ -129,6 +129,18 @@ public class PlayerController extends Controller implements Initializable {
         Main.gameTimer.start();
     }
 
+    private void resetPlayerStats() {
+        mPlayerShip.resetPlayer();
+        Main.level = 0;
+        displayLevel();
+        displayScore();
+        displayLives();
+    }
+
+    public void showInstructions() {
+        readdInstructions(introLabel, goalLabel, instructionLabel, enterLabel);
+    }
+
 
     private void addKeyListener() {
         player_ship_image.setOnKeyPressed(key -> {
@@ -156,6 +168,8 @@ public class PlayerController extends Controller implements Initializable {
             } else if (key.getCode().equals(KeyCode.ENTER)) {
                 if (!gameStarted) {
                     removeInstructions(introLabel, goalLabel, instructionLabel, enterLabel);
+                    resetPlayerStats();
+                    resetPlayerPosition();
                     startGameTimer();
                 }
             }

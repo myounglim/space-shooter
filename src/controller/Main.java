@@ -206,6 +206,24 @@ public class Main extends Application {
         else resetAnObstacle(index);
         playerController.decreaseLife();
         playerController.displayLives();
+        if (playerController.getPlayerShip().getLives() <= 0) {
+            gameTimer.stop();
+            PlayerController.gameStarted = false;
+            resetGame();
+            playerController.showInstructions();
+        }
+    }
+
+    private void resetGame() {
+        for (int i = 0; i < EnemyController.NUM_FOLLOWERS + EnemyController.NUM_SHOOTERS; i++) {
+            resetAnEnemy(i);
+        }
+
+        for (int i = 0; i < ObstacleController.NUM_OBSTACLES; i++) {
+            resetAnObstacle(i);
+        }
+
+        playerController.resetPlayerPosition();
     }
 
     private void initializeControllers() {

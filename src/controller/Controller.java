@@ -51,4 +51,11 @@ public abstract class Controller {
         l3.setLayoutY(1000);
         l4.setLayoutY(1000);
     }
+
+    public void readdInstructions(Label l1, Label l2, Label l3, Label l4) {
+        l1.setLayoutY(Main.WINDOW_HEIGHT / 2 - 90);
+        l2.setLayoutY(Main.WINDOW_HEIGHT / 2 - 60);
+        l3.setLayoutY(Main.WINDOW_HEIGHT / 2 - 30);
+        l4.setLayoutY(Main.WINDOW_HEIGHT / 2);
+    }
 }

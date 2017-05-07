@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import model.GameObject;
 import utility.Position;
 
@@ -38,6 +40,8 @@ public abstract class Controller {
     public void setUpLabelDisplay(Label label, Position pos) {
         label.setLayoutX(pos.getXPosition());
         label.setLayoutY(pos.getYPosition());
+        label.setFont(new Font("Courier New", 25));
+        label.setTextFill(Color.ANTIQUEWHITE);
         root.getChildren().add(label);
     }
 

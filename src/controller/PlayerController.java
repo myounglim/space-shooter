@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.GameObject;
+import model.Goal;
 import model.PlayerShip;
 import model.ShootingObject;
 import utility.Position;
@@ -25,6 +26,8 @@ public class PlayerController extends Controller implements Initializable {
     ImageView laserView;
     PlayerShip mPlayerShip;
     ShootingObject laser;
+    Goal goal;
+    ImageView goalView;
     public static final float INITIAL_X_POS = 10;
     public static final float INITIAL_Y_POS = Main.WINDOW_HEIGHT / 2;
     private Label scoreLabel, lifeLabel, scoreText, lifeText;
@@ -48,6 +51,12 @@ public class PlayerController extends Controller implements Initializable {
         laser = mPlayerShip.getShooting();
         laserView = setImage(laser);
         setViewPosition(mPlayerShip.getShooting(), laserView);
+        goal = new Goal(
+                new Position(Main.WINDOW_WIDTH - 75, Main.WINDOW_HEIGHT / 2 - 50),
+                new File("src/images/goal-flag1.png"),
+                0);
+        goalView = setImage(goal);
+        setViewPosition(goal, goalView);
     }
 
     public ImageView getPlayerView() { return player_ship_image; }
@@ -87,9 +96,21 @@ public class PlayerController extends Controller implements Initializable {
         scoreText = new Label();
         lifeText = new Label();
         setUpLabelDisplay(lifeLabel, new Position(15, 10));
-        setUpLabelDisplay(lifeText, new Position(60, 10));
-        setUpLabelDisplay(scoreLabel, new Position(120, 10));
-        setUpLabelDisplay(scoreText, new Position(160, 10));
+        setUpLabelDisplay(lifeText, new Position(110, 10));
+        setUpLabelDisplay(scoreLabel, new Position(150, 10));
+        setUpLabelDisplay(scoreText, new Position(240, 10));
+    }
+
+    private ImageView setUpGoal() {
+        File file = new File("src/images/goal-flag1.png");
+        Image image = new Image(file.toURI().toString());
+        ImageView view = new ImageView(image);
+        view.setFitWidth(75);
+        view.setFitHeight(75);
+        view.setX(Main.WINDOW_WIDTH - 75);
+        view.setY(Main.WINDOW_HEIGHT / 2 - 50);
+        root.getChildren().add(view);
+        return view;
     }
 
     private void addKeyListener() {

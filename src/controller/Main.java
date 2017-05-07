@@ -4,14 +4,15 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Enemy;
 import model.EnemyFollower;
 import model.GameObject;
+import model.Obstacle;
 
 public class Main extends Application {
     public static final int WINDOW_WIDTH = 1250;
@@ -30,6 +31,11 @@ public class Main extends Application {
         primaryStage.setTitle("Space Shooter");
         primaryStage.setScene(new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.show();
+        BackgroundImage myBI = new BackgroundImage(new Image("https://ak8.picdn.net/shutterstock/videos/14996698/thumb/1.jpg"),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        //then you set to your node
+        root.setBackground(new Background(myBI));
         startGame();
     }
 
@@ -41,7 +47,7 @@ public class Main extends Application {
                     enemyController.getEnemy(i).moveForward();
                     enemyController.setViewPosition(enemyController.getEnemy(i), enemyController.getEnemyView(i));
                     if (collisionDetected(playerController.getPlayerView(), enemyController.getEnemyView(i))) {
-                        resetAfterCollision(i);
+                        resetAfterCollision(i, true);
                     }
                     checkOutOfBounds(i);
                 }
@@ -58,6 +64,16 @@ public class Main extends Application {
                     }
                     playerController.shootLaser();
                 }
+
+                for (int i = 0; i < ObstacleController.NUM_OBSTACLES; i++) {
+                    obstacleController.getObstacle(i).move();
+                    obstacleController.setViewPosition(obstacleController.getObstacle(i), obstacleController.getObstacleView(i));
+                    if (collisionDetected(playerController.getPlayerView(), obstacleController.getObstacleView(i))) {
+                        resetAfterCollision(i, false);
+                    }
+                    checkObstacleOutOfBounds(i);
+                }
+
             }
         };
 
@@ -94,14 +110,25 @@ public class Main extends Application {
             resetAnEnemy(index);
     }
 
+    private void checkObstacleOutOfBounds(int index) {
+        Obstacle obstacle = obstacleController.getObstacle(index);
+        if (obstacle.obstacleOutOfBounds())
+            resetAnObstacle(index);
+    }
+
     private void resetAnEnemy(int index) {
         enemyController.resetEnemyPosition(enemyController.getEnemy(index), enemyController.getEnemyView(index));
     }
 
-    private void resetAfterCollision(int index) {
+    private void resetAnObstacle(int index) {
+        obstacleController.resetObstaclePosition(obstacleController.getObstacle(index), obstacleController.getObstacleView(index));
+    }
+
+    private void resetAfterCollision(int index, boolean isEnemy) {
         System.out.println("Collision!");
         playerController.resetPlayerPosition();
-        resetAnEnemy(index);
+        if (isEnemy) resetAnEnemy(index);
+        else resetAnObstacle(index);
         playerController.decreaseLife();
         playerController.displayLives();
     }

@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import model.Enemy;
 import model.Obstacle;
 import utility.Position;
 
@@ -16,7 +17,7 @@ import java.util.ResourceBundle;
 public class ObstacleController extends Controller implements Initializable {
     private ArrayList<Obstacle> mObstacles;
     private ArrayList<ImageView> mObstacleView;
-    public static final int NUM_OBSTACLES = 1;
+    public static final int NUM_OBSTACLES = 3;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,7 +30,7 @@ public class ObstacleController extends Controller implements Initializable {
         float speed = 1.0f;
         for (int i = 0; i < NUM_OBSTACLES; i++) {
             mObstacles.add(new Obstacle(
-                    new Position(Main.WINDOW_WIDTH / 2 + i * 50, -10),
+                    new Position(Main.WINDOW_WIDTH / 5 * 4 + i * 100, -10),
                     new File("src/images/asteroid3.png"),
                     i,
                     speed,
@@ -40,5 +41,18 @@ public class ObstacleController extends Controller implements Initializable {
             setViewPosition(mObstacles.get(i), mObstacleView.get(i));
             speed += 0.5;
         }
+    }
+
+    public void resetObstaclePosition(Obstacle obstacle, ImageView obstacleView) {
+        resetPosition(obstacle);
+        setViewPosition(obstacle, obstacleView);
+    }
+
+    public Obstacle getObstacle(int index) {
+        return this.mObstacles.get(index);
+    }
+
+    public ImageView getObstacleView(int index) {
+        return this.mObstacleView.get(index);
     }
 }

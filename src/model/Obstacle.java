@@ -22,6 +22,7 @@ public class Obstacle extends GameObject {
 
     /** TODO */
     public void move() {
-
+        this.position.moveDown(speed);
+        this.position.moveLeft(speed);
     }
 }

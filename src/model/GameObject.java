@@ -45,4 +45,10 @@ public abstract class GameObject {
         float y = this.getPosition().getYPosition();
         return (x < -50 || y < -50);
     }
+
+    public boolean obstacleOutOfBounds() {
+        float x = this.getPosition().getXPosition();
+        float y = this.getPosition().getYPosition();
+        return (y > Main.WINDOW_HEIGHT + 10);
+    }
 }

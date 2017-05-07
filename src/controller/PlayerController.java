@@ -63,6 +63,7 @@ public class PlayerController extends Controller implements Initializable {
     public PlayerShip getPlayerShip() { return this.mPlayerShip; }
     public ShootingObject getLaser() { return this.laser; }
     public ImageView getLaserView() { return this.laserView; }
+    public ImageView getGoalView() { return this.goalView; }
 
     public void resetPlayerPosition() {
         resetPosition(mPlayerShip);
@@ -116,17 +117,21 @@ public class PlayerController extends Controller implements Initializable {
     private void addKeyListener() {
         player_ship_image.setOnKeyPressed(key -> {
             if (key.getCode().equals(KeyCode.UP)) {
-                mPlayerShip.moveUp();
-                System.out.println("Y pos: " + mPlayerShip.getPosition().getYPosition());
+                if (mPlayerShip.getPosition().getYPosition() > -5)
+                    mPlayerShip.moveUp();
+                //System.out.println("Y pos: " + mPlayerShip.getPosition().getYPosition());
             } else if (key.getCode().equals(KeyCode.DOWN)) {
-                mPlayerShip.moveDown();
-                System.out.println("Y pos: " + mPlayerShip.getPosition().getYPosition());
+                if (mPlayerShip.getPosition().getYPosition() < Main.WINDOW_HEIGHT - 70)
+                    mPlayerShip.moveDown();
+                //System.out.println("Y pos: " + mPlayerShip.getPosition().getYPosition());
             } else if (key.getCode().equals(KeyCode.RIGHT)) {
-                mPlayerShip.moveRight();
-                System.out.println("X pos: " + mPlayerShip.getPosition().getXPosition());
+                if (mPlayerShip.getPosition().getXPosition() < Main.WINDOW_WIDTH - 70)
+                    mPlayerShip.moveRight();
+                //System.out.println("X pos: " + mPlayerShip.getPosition().getXPosition());
             } else if (key.getCode().equals(KeyCode.LEFT)) {
-                mPlayerShip.moveLeft();
-                System.out.println("X pos: " + mPlayerShip.getPosition().getXPosition());
+                if (mPlayerShip.getPosition().getXPosition() > -5)
+                    mPlayerShip.moveLeft();
+                //System.out.println("X pos: " + mPlayerShip.getPosition().getXPosition());
             } else if (key.getCode().equals(KeyCode.SPACE)) {
                 if (!laser.isShooting()) {
                     positionLaser();

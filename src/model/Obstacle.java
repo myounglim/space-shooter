@@ -17,7 +17,7 @@ public class Obstacle extends GameObject {
         this.speed = speed;
         this.destructible = destructible;
         this.angle = angle;
-        this.dimension = new Dimension(50, 50);
+        this.dimension = new Dimension(65, 65);
     }
 
     /** TODO */

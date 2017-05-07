@@ -44,8 +44,4 @@ public abstract class Controller {
         label.setTextFill(Color.ANTIQUEWHITE);
         root.getChildren().add(label);
     }
-
-//    public Bounds getBounds(ImageView obj) {
-//        return obj.getBoundsInParent();
-//    }
 }

@@ -24,13 +24,13 @@ public class PlayerShip extends GameObject {
         this.shooting = new ShootingObject(
                 new Position(pos.getXPosition(), Main.WINDOW_WIDTH + 50),
                 new File("src/images/yellow-green.png"),
-                0, 2f);
+                0, 3f);
     }
 
     public int getLives() { return numLives; }
     public int getCurrentScore() { return this.currentScore; }
     public void decreaseLife() { this.numLives--; }
-    public void increaseScore() { this.currentScore++; }
+    public void increaseScore() { this.currentScore += 10; }
     public ShootingObject getShooting() { return this.shooting; }
 
     public void moveUp() {

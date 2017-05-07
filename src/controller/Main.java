@@ -20,7 +20,7 @@ public class Main extends Application {
     public static final int WINDOW_WIDTH = 1250;
     public static final int WINDOW_HEIGHT = 650;
     public static final int WINDOW_DIVISION = 650 / 5;
-    AnimationTimer gameTimer;
+    static AnimationTimer gameTimer;
     Pane root;
     PlayerController playerController;
     EnemyController enemyController;
@@ -67,7 +67,7 @@ public class Main extends Application {
             }
         };
 
-        gameTimer.start();
+        //gameTimer.start();
     }
 
     private void levelOneEnemies() {
@@ -130,6 +130,7 @@ public class Main extends Application {
 
     private void nextLevel() {
         level++;
+        playerController.displayLevel();
     }
 
     private boolean isAtGoal(ImageView player, ImageView goal) {

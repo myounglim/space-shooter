@@ -6,7 +6,7 @@ import utility.Position;
 import java.io.File;
 
 /**
- * Created by student on 5/6/17.
+ * Goal for the player to reach
  */
 public class Goal extends GameObject {
     public Goal(Position pos, File file, int index) {

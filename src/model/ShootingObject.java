@@ -7,7 +7,7 @@ import utility.Position;
 import java.io.File;
 
 /**
- * Created by student on 5/5/17.
+ * For supporting a shooting feature for the playership
  */
 public class ShootingObject extends GameObject {
     float speed;

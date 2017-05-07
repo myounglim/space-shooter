@@ -1,7 +1,7 @@
 package utility;
 
 /**
- * Created by student on 5/4/17.
+ * Dimension class
  */
 public class Dimension {
     int width, height;

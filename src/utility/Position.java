@@ -1,7 +1,7 @@
 package utility;
 
 /**
- * Created by student on 5/4/17.
+ * Position class
  */
 public class Position {
     float x, y;

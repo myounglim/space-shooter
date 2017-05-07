@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Created by student on 5/6/17.
+ * Controlling obstacles (asteroids) on the field
  */
 public class ObstacleController extends Controller implements Initializable {
     private ArrayList<Obstacle> mObstacles;

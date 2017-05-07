@@ -11,7 +11,7 @@ import model.GameObject;
 import utility.Position;
 
 /**
- * Created by student on 5/5/17.
+ * Base controller for all controllers to inherit from
  */
 public abstract class Controller {
     Pane root;
@@ -43,5 +43,12 @@ public abstract class Controller {
         label.setFont(new Font("Courier New", 25));
         label.setTextFill(Color.ANTIQUEWHITE);
         root.getChildren().add(label);
+    }
+
+    public void removeInstructions(Label l1, Label l2, Label l3, Label l4) {
+        l1.setLayoutY(1000);
+        l2.setLayoutY(1000);
+        l3.setLayoutY(1000);
+        l4.setLayoutY(1000);
     }
 }

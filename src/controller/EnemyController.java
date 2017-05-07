@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Created by student on 5/5/17.
+ * EnemyController for all enemies on the field
  */
 public class EnemyController extends Controller implements Initializable {
     private ArrayList<Enemy> mEnemies;
@@ -26,16 +26,12 @@ public class EnemyController extends Controller implements Initializable {
     public static final int NUM_FOLLOWERS = 3;
     public static final int NUM_SHOOTERS = 2;
     public static final int[] Y_ALIGNED = {30, 290, 550, 160, 420};
-    //Pane root;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mEnemies = new ArrayList<>();
         mEnemiesView = new ArrayList<>();
         initializeEnemies();
-//        mEnemyFollower = new EnemyFollower(new Position(750, 200), new File("src/images/enemy1.png"), 1.5f);
-//        followerView = setImage(mEnemyFollower);
-//        setPosition(mEnemyFollower, followerView);
     }
 
     private void initializeEnemies() {

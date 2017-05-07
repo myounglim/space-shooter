@@ -30,7 +30,7 @@ public class PlayerController extends Controller implements Initializable {
     ImageView goalView;
     public static final float INITIAL_X_POS = 10;
     public static final float INITIAL_Y_POS = Main.WINDOW_HEIGHT / 2;
-    private Label scoreLabel, lifeLabel, scoreText, lifeText;
+    private Label scoreLabel, lifeLabel, scoreText, lifeText, levelLabel, levelText;
     //Pane root;
 
     @Override

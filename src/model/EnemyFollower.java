@@ -5,7 +5,7 @@ import utility.Position;
 import java.io.File;
 
 /**
- * Enemy that follows that player
+ * A type of alien enemy
  */
 public class EnemyFollower extends Enemy {
     public EnemyFollower(Position pos, File file, int index, float speed) {

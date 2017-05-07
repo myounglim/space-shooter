@@ -5,7 +5,7 @@ import utility.Position;
 import java.io.File;
 
 /**
- * Enemy that shoots at the player
+ * A type of alien enemy
  */
 public class EnemyShooter extends Enemy {
     public EnemyShooter(Position pos, File file, int index, float speed) {

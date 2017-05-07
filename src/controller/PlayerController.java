@@ -141,7 +141,6 @@ public class PlayerController extends Controller implements Initializable {
         readdInstructions(introLabel, goalLabel, instructionLabel, enterLabel);
     }
 
-
     private void addKeyListener() {
         player_ship_image.setOnKeyPressed(key -> {
             if (key.getCode().equals(KeyCode.UP)) {
